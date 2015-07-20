@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'omniauth-github'
 gem 'figaro'
+gem "octokit", "~> 3.0"
 
 group :development, :test do
   gem 'better_errors'
