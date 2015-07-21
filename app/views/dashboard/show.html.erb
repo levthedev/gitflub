@@ -1,5 +1,5 @@
 <div class="container-fluid container-home">
-  <div class="col-md-4">
+  <div class="col-md-4 gitflub">
     <div class="profile">
       <h1>GitFlub</h1>
       <br>
@@ -19,8 +19,6 @@
   </div>
 
   <div class="col-md-4">
-    <br>
-    <br>
     <div class="feed">
       <br><br>
     <% @feed.first(20).each do |e| %>
@@ -30,12 +28,15 @@
         <% commits = e.payload.size ? "#{e.payload.size} commits to" : "" %>
         <%= link_to "#{event_type}: #{commits} #{e.repo.name}", url%>
         <br>
+        </div>
         <% end %>
-      </div>
     </div>
   </div>
 
   <div class="col-md-4">
 
   </div>
+<div class="graph">
+  <%= current_user.contributions.to_s.html_safe %>
+</div>
 </div>

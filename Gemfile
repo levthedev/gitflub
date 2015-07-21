@@ -12,6 +12,7 @@ gem 'omniauth-github'
 gem 'figaro'
 gem 'octokit', '~> 3.0'
 gem 'pg'
+gem 'hurley'
 
 group :development, :test do
   gem 'better_errors'

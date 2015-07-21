@@ -70,6 +70,7 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.4.2)
     hike (1.2.3)
+    hurley (0.1)
     i18n (0.7.0)
     jbuilder (2.2.8)
       activesupport (>= 3.0.0, < 5)
@@ -183,6 +184,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.3)
   coffee-rails (~> 4.1.0)
   figaro
+  hurley
   jbuilder (~> 2.0)
   jquery-rails
   octokit (~> 3.0)
