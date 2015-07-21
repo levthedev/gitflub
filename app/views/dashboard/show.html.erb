@@ -6,10 +6,16 @@
     <%= image_tag current_user.image_url, class: "img-circle img-thumbnail home-image" %>
     <h1> <%= current_user.nickname %></h1>
     <h3> <%= current_user.email %></h3>
-    <% user = Octokit.user current_user.nickname %>
-    <h4 id="follows">Followers: <%= user[:followers] %> Following: <%= user[:following] %></h4>
+    <h4 id="follows">
+      Followers: <%= @client.user.followers %> Following: <%= @client.user.following %>
+    </h4>
     <h4>Starred: <%= @client.starred.count %></h4>
     <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-lg btn-default btn-home" %>
   </div>
+  </div>
+  <div class="feed">
+    <% @feed.first(20).each do |e| %>
+      <%= "#{e.type}: #{e.payload.size} commits to #{e.repo.name}" %><br>
+    <% end %>
   </div>
 </div>
