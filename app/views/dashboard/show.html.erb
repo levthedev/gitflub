@@ -8,6 +8,7 @@
     <h3> <%= current_user.email %></h3>
     <% user = Octokit.user current_user.nickname %>
     <h4 id="follows">Followers: <%= user[:followers] %> Following: <%= user[:following] %></h4>
+    <h4>Starred: <%= @client.starred.count %></h4>
     <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-lg btn-default btn-home" %>
   </div>
   </div>
