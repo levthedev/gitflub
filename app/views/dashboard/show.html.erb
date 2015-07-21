@@ -21,8 +21,7 @@
     <br>
     <br>
     <div class="feed">
-      <br>
-      <br>
+      <br><br>
     <% @feed.first(20).each do |e| %>
       <div class="feed">
         <% url = "http://github.com/" + "#{e.repo.name}"%>
