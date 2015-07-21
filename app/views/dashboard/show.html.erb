@@ -9,7 +9,11 @@
     <h4 id="follows">
       Followers: <%= @client.user.followers %> Following: <%= @client.user.following %>
     </h4>
-    <h4>Starred: <%= @client.starred.count %> Orginizations: <%= @client.organizations %></h4>
+    <h4>Starred: <%= @client.starred.count %></h4>
+    <h4>Orginizations: <% @client.organizations.map do |e| %>
+      <%= e.login %><br>
+    <% end %>
+    </h4>
     <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-lg btn-default btn-home" %>
   </div>
   </div>
