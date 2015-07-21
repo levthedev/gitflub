@@ -21,9 +21,14 @@
     <br>
     <br>
     <div class="feed">
+      <br>
+      <br>
     <% @feed.first(20).each do |e| %>
       <div class="feed">
-        <%= "#{e.type}: #{e.payload.size} commits to #{e.repo.name}" %><br>
+        <% url = "http://github.com/" + "#{e.repo.name}"%>
+        <% event_type = e.type.split('Event').join%>
+        <%= link_to "#{event_type}: #{e.payload.size} commits to #{e.repo.name}", url%>
+        <br>
         <% end %>
       </div>
     </div>
