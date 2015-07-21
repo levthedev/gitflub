@@ -1,5 +1,5 @@
 <div class="container-fluid container-home">
-  <div class="col-md-8">
+  <div class="col-md-4">
     <div class="profile">
       <h1>GitFlub</h1>
       <br>
@@ -9,13 +9,19 @@
     <h4 id="follows">
       Followers: <%= @client.user.followers %> Following: <%= @client.user.following %>
     </h4>
-    <h4>Starred: <%= @client.starred.count %></h4>
+    <h4>Starred: <%= @client.starred.count %> Orginizations: <%= @client.organizations %></h4>
     <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-lg btn-default btn-home" %>
   </div>
   </div>
-  <div class="feed">
+  <div class="col-md-4">
+    <br>
+    <br>
+    <div class="feed">
     <% @feed.first(20).each do |e| %>
-      <%= "#{e.type}: #{e.payload.size} commits to #{e.repo.name}" %><br>
-    <% end %>
+      <div class="feed">
+        <%= "#{e.type}: #{e.payload.size} commits to #{e.repo.name}" %><br>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
