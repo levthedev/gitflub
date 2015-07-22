@@ -17,6 +17,8 @@ gem 'githubchart'
 gem 'githubstats'
 
 group :development, :test do
+  gem 'capybara'
+  gem 'launchy'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
