@@ -4,12 +4,15 @@ include Capybara::DSL
   def setup
     Capybara.app = Secretic::Application
     stub_omniauth
-    @client.stub(token: User.last.token, nickname: "levthedev")
+    current_user = mock(token: User.last)
+    @client.stub(token: User.last.token,
+                 user: User.last,
+                 nickname: "levthedev",
+                 user_events: ["1", "2"])
   end
 
   def test_it_logs_in
     visit '/dashboard'
-    save_and_open_page
     assert page.has_content?("levthedev")
   end
 
@@ -19,16 +22,16 @@ include Capybara::DSL
         provider: 'github',
         extra: {
           raw_info: {
-            user_id: "1234",
+            user_id: "11400051",
             name: "levthedev",
           }
         },
         credentials: {
-          token: "pizza",
+          token: User.last.token,
         },
         info: {
           image: "https://avatars.githubusercontent.com/u/8868319?v=3",
-          nickname: "worace"
+          nickname: "levthedev"
         }
       })
   end
