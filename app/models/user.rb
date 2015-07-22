@@ -13,8 +13,11 @@ class User < ActiveRecord::Base
   end
 
   def contributions
-    client   = Hurley::Client.new("http://github.com/users")
-    body     = client.get("#{nickname}/contributions").body
-    document = Nokogiri::HTML(body.gsub("eeeeee", "C3C3C3"))
+    chart = GithubChart.new(nickname)
+    chart.colors = ["#f5f5dc", "#D6E685", "#8CC665", "#44A340", "#1E6823"]
+    chart
+    # client   = Hurley::Client.new("http://github.com/users")
+    # body     = client.get("#{nickname}/contributions").body
+    # document = Nokogiri::HTML(body.gsub("eeeeee", "C3C3C3"))
   end
 end

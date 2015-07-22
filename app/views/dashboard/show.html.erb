@@ -26,10 +26,11 @@
         <% url = "http://github.com/" + "#{e.repo.name}" %>
         <% event_type = e.type.split('Event').join %>
         <% commits = e.payload.size ? "#{e.payload.size} commits to" : "" %>
-        <%= link_to "#{event_type}: #{commits} #{e.repo.name}", url%>
+        <%= link_to "#{event_type}: #{commits} #{e.repo.name} on #{e.created_at.strftime('%d/%m/%Y')}", url %>
         <br>
         </div>
         <% end %>
+        <br>
     </div>
   </div>
 
@@ -37,6 +38,6 @@
 
   </div>
 <div class="graph">
-  <%= current_user.contributions.to_s.html_safe %>
+  <%= current_user.contributions.svg.html_safe %>
 </div>
 </div>

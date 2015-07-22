@@ -13,6 +13,8 @@ gem 'figaro'
 gem 'octokit', '~> 3.0'
 gem 'pg'
 gem 'hurley'
+gem 'githubchart'
+gem 'githubstats'
 
 group :development, :test do
   gem 'better_errors'
