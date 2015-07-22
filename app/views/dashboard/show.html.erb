@@ -28,9 +28,15 @@
         <% commits = e.payload.size ? "#{e.payload.size} commits to" : "" %>
         <%= link_to "#{event_type}: #{commits} #{e.repo.name} on #{e.created_at.strftime('%d/%m/%Y')}", url %>
         <br>
-        </div>
+      </div>
         <% end %>
         <br>
+      <h5><div class="contributions">
+          <% num = current_user.contribution_stats %>
+          Contributions: <%=num[0]%> |
+          Best Streak: <%=num[1]%> |
+          Current Streak: <%=num[2]%>
+      </div></h5>
     </div>
   </div>
 

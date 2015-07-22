@@ -16,8 +16,21 @@ class User < ActiveRecord::Base
     chart = GithubChart.new(nickname)
     chart.colors = ["#f5f5dc", "#D6E685", "#8CC665", "#44A340", "#1E6823"]
     chart
-    # client   = Hurley::Client.new("http://github.com/users")
-    # body     = client.get("#{nickname}/contributions").body
-    # document = Nokogiri::HTML(body.gsub("eeeeee", "C3C3C3"))
+  end
+
+  def timeline
+    client   = Hurley::Client.new("http://github.com/")
+    body     = client.get("/").body
+    document = Nokogiri::HTML(body)
+    alerts   = document.css(".alert")
+  end
+
+  def contribution_stats
+    client          = Hurley::Client.new("http://github.com/")
+    body            = client.get("#{nickname}").body
+    document        = Nokogiri::HTML(body)
+    contributions   = document.css(".contrib-number")
+    c = contributions.to_s
+    c.delete(',').gsub(/[^0-9]/, '/').split('/').reject(&:empty?)
   end
 end
