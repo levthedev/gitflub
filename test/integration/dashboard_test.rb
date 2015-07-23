@@ -4,16 +4,41 @@ include Capybara::DSL
   def setup
     Capybara.app = Secretic::Application
     stub_omniauth
-    current_user = mock(token: User.last)
-    @client.stub(token: User.last.token,
-                 user: User.last,
-                 nickname: "levthedev",
-                 user_events: ["1", "2"])
   end
 
   def test_it_logs_in
-    visit '/dashboard'
-    assert page.has_content?("levthedev")
+    VCR.use_cassette("dashboard lev") do
+      visit '/'
+      click_on 'Login'
+      assert page.has_content?("levthedev")
+    end
+  end
+
+  def test_it_displays_follow_stats
+    VCR.use_cassette("dashboard lev") do
+      visit '/'
+      click_on 'Login'
+      assert page.has_content?("Followers: 10 ")
+      assert page.has_content?("Following: 23")
+    end
+  end
+
+  def test_it_displays_social_stats
+    VCR.use_cassette("dashboard lev") do
+      visit '/'
+      click_on 'Login'
+      assert page.has_content?("Starred: 12")
+      assert page.has_content?("Organizations: turingschool")
+    end
+  end
+
+  def test_it_displays_social_stats
+    VCR.use_cassette("dashboard lev") do
+      visit '/'
+      click_on 'Login'
+      save_and_open_page
+      assert page.has_css?(".feed", count: 20)
+    end
   end
 
   def stub_omniauth
@@ -27,7 +52,7 @@ include Capybara::DSL
           }
         },
         credentials: {
-          token: User.last.token,
+          token: ENV["github_sample_token"],
         },
         info: {
           image: "https://avatars.githubusercontent.com/u/8868319?v=3",

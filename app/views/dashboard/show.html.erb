@@ -7,10 +7,10 @@
       <h1> <%= current_user.nickname %></h1>
       <h3> <%= current_user.email %></h3>
       <h4 id="follows">
-        Followers: <%= @client.user.followers %> Following: <%= @client.user.following %>
+        Followers: <%= client.user.followers %> Following: <%= client.user.following %>
     </h4>
-    <h4>Starred: <%= @client.starred.count %></h4>
-    <h4>Orginizations: <% @client.organizations.map do |e| %>
+    <h4>Starred: <%= client.starred.count %></h4>
+    <h4>Organizations: <% client.organizations.map do |e| %>
       <%= e.login %><br>
     <% end %>
     </h4>
