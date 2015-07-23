@@ -1,2 +1,2 @@
-# Secretic
-This is an example Rails app to teach about OAuth.
+# Gitflub
+Why use Github when you could use Gitflub?
