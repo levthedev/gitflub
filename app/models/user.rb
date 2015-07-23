@@ -28,6 +28,14 @@ class User < ActiveRecord::Base
     @client ||= Octokit::Client.new(access_token: token)
   end
 
+  def commit(event)
+    if event.payload.commits
+      "http://github.com/" + "#{event.repo.name}/commits/#{event.payload.commits.first.sha}"
+    else
+      "http://github.com/" + "#{event.repo.name}"
+    end
+  end
+
   def following_feed
     events = github_client.following.map do |user|
       github_client.user_events(user.login)
