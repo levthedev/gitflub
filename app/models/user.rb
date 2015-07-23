@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  require 'nokogiri'
-  require 'hurley'
-
   def self.find_or_create_from_oauth(oauth)
     user = User.find_or_create_by(provider: oauth.provider, uid: oauth.uid)
     user.email     = oauth.info.email

@@ -32,12 +32,20 @@ include Capybara::DSL
     end
   end
 
-  def test_it_displays_social_stats
+  def test_it_displays_users_feed
     VCR.use_cassette("dashboard lev") do
       visit '/'
       click_on 'Login'
-      save_and_open_page
-      assert page.has_css?(".feed", count: 20)
+      assert page.has_css?(".feed", count: 21)
+    end
+  end
+
+  def test_it_shows_user_timeline
+    VCR.use_cassette("dashboard lev") do
+      visit '/'
+      click_on 'Login'
+      assert page.has_css?(".event", count: 6)
+      assert page.has_content?("turingschool/ruby-submissions")
     end
   end
 
